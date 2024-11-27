@@ -58,7 +58,7 @@ class Parser {
 
 	private Stmt printStatement() {
 		Expr value = expression();
-		consume(SEMICOLONE, "Expect ';' after value.");
+		consume(SEMICOLON, "Expect ';' after value.");
 		return new Stmt.Print(value);
 	}
 
@@ -70,7 +70,7 @@ class Parser {
 			initializer = expression();
 		}
 
-		consume(SEMICOLONE, "Expect ';' after variable declaration.");
+		consume(SEMICOLON, "Expect ';' after variable declaration.");
 		return new Stmt.Var(name, initializer);
 	}
 
@@ -85,7 +85,7 @@ class Parser {
 
 	private Stmt expressionStatement() {
 		Expr expr = expression();
-		consume(SEMICOLONE, "Expect ';' after value.");
+		consume(SEMICOLON, "Expect ';' after value.");
 		return new Stmt.Expression(expr);
 	}
 
@@ -247,7 +247,7 @@ class Parser {
 	private void synchronize() {
 		advance();
 		while (!isAtEnd()) {
-			if (previous().type == SEMICOLONE) return;
+			if (previous().type == SEMICOLON) return;
 
 			switch (peek().type) {
 				case CLASS: case FOR: case FUN: case IF: case PRINT:
